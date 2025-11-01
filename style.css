@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f4f7f6 0%, #ffffff 100%);
+    color: #333;
+    line-height: 1.6;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    color: #222;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+p {
+    font-size: 1rem;
+    color: #555;
+}
+
+
+/* --- Hero Section (The Top Part) --- */
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    min-height: 50vh; /* Gives the top section space */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-container i {
+    font-size: 3.5rem;
+    color: #4a4aff;
+}
+
+.logo-container h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+    font-weight: 900;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: 400;
+    color: #555;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Wider search bar */
+    padding: 15px 25px;
+    border: 2px solid #4a4aff; 
+    border-radius: 50px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.search-bar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(74, 74, 255, 0.2);
+    border-width: 2px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.1rem;
+    color: #333;
+    padding-right: 10px;
+}
+
+.search-bar input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.search-bar i {
+    font-size: 1.2rem;
+    color: #4a4aff;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.search-bar i:hover {
+    transform: scale(1.1);
+}
+
+
+/* --- New Features Section --- */
+.features {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #4a4aff;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+
+/* --- How It Works Section --- */
+.how-it-works {
+    padding: 60px 0;
+    background-color: #f9f9f9; /* Slight off-white */
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.step-card span {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    background-color: #4a4aff;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.step-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* --- Footer --- */
+footer {
+    margin-top: auto; 
+    width: 100%;
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #222;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+footer p{
+    color: white;
+}
