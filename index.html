@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authenticity</title>
+    
+    <!-- Link to the stylesheet -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Google Font (Roboto) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.svg">
 </head>
-
 <body>
+
     <div class="page-wrapper">
+
         <header class="hero-container">
             <div class="logo-container">
                 <i class="fa-solid fa-shield"></i>
                 <h1>Authenticity</h1>
             </div>
-
+            
             <p class="subtitle">Evaluate the safety of a link.</p>
-
+            
             <div class="search-bar">
-                <input type="text" placeholder="Enter a URL to check (e.g., google.com)">
-                <i class="fa-solid fa-search"></i>
+                <!-- Added id="url-input" -->
+                <input type="text" id="url-input" placeholder="Enter a URL to check (e.g., google.com)">
+                <!-- Added id="search-btn" -->
+                <i class="fa-solid fa-search" id="search-btn"></i>
             </div>
+
+            <!-- This is where the results will be displayed -->
+            <div id="results-container" class="results-container"></div>
+
         </header>
 
-        <!-- Features Section -->
         <section class="features">
+            <!-- ... (Your existing features section) ... -->
             <div class="container">
                 <h2>Why Check a Link?</h2>
                 <div class="features-grid">
@@ -56,24 +68,23 @@
             </div>
         </section>
 
-        <!-- How It Works Section -->
         <section class="how-it-works">
-            <div class="container">
+             <div class="container">
                 <h2>How It Works</h2>
                 <div class="steps-grid">
-
+                    <!-- Step 1 -->
                     <div class="step-card">
                         <span>1</span>
                         <h3>Paste Your Link</h3>
                         <p>Copy the full URL and paste it into the search box above.</p>
                     </div>
-
+                    <!-- Step 2 -->
                     <div class="step-card">
                         <span>2</span>
                         <h3>We Analyze</h3>
                         <p>Our system checks the link against multiple security databases in real-time.</p>
                     </div>
-
+                    <!-- Step 3 -->
                     <div class="step-card">
                         <span>3</span>
                         <h3>Get Your Report</h3>
@@ -82,13 +93,15 @@
                 </div>
             </div>
         </section>
-        <!-- Footer Section -->
+        
         <footer>
             <p>2025 &copy; All Rights Reserved</p>
         </footer>
 
-    </div>
+    </div> <!-- end of .page-wrapper -->
+
+    <!--Linking the JavaScript file -->
+    <script src="script.js"></script>
 
 </body>
-
 </html>
