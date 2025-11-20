@@ -21,49 +21,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Main Function to Check URL ---
-    function checkUrl() {
+    async function checkUrl() {
         const urlToCheck = urlInput.value;
 
         // 1. Validate Input
-        // Simple check to see if the input is empty or a very basic URL
+        // Simple check to see if the input is empty
         if (urlToCheck.trim() === "") {
             showResult("error", "Input Error", "Please enter a URL to check.");
             return;
         }
 
         // 2. Show Loading State
-        // This gives the user feedback that something is happening
+        // This gives the user feedback that something is happening while waiting for the server
         showResult("loading", "Checking...", `Analyzing the safety of ${urlToCheck}`);
 
-        
-        // 3. --- API Simulation ---
-        // Using  a 'setTimeout' to simulate a 2-second network delay.
-        setTimeout(() => {
-            // --- SIMULATED RESPONSE ---
-            // Let's create a fake result for demonstration
-            const fakeDomains = {
-                "google.com": { status: "safe", title: "Safe" },
-                "badsite.net": { status: "dangerous", title: "Dangerous" },
-                "weirdsitelog.org": { status: "warning", title: "Warning" },
-            };
+        // 3. --- REAL API CALL TO PYTHON BACKEND ---
+        try {
+            // We send the URL to your local Python server on port 5000
+            const response = await fetch('http://localhost:5000/api/check-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: urlToCheck })
+            });
 
-            let result = fakeDomains[urlToCheck.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '')]; // Clean the URL a bit
+            // Parse the JSON answer from the server
+            const data = await response.json();
 
-            if (result) {
-                // We found a matching fake domain
-                if (result.status === "safe") {
-                    showResult("safe", "This Link is Safe", `${urlToCheck} appears to be safe and free of threats.`);
-                } else if (result.status === "dangerous") {
-                    showResult("dangerous", "Dangerous Link!", `This site is flagged for phishing or malware. We strongly advise against visiting ${urlToCheck}.`);
-                } else {
-                    showResult("warning", "Use Caution", `We couldn't confirm this site's safety. It may be new or contain trackers. Proceed with caution.`);
-                }
-            } else {
-                // If no specific match, give a generic "safe" or "warning"
-                showResult("safe", "This Link Appears Safe", `${urlToCheck} is not on any known threat lists.`);
+            // Check if the server reported an internal error
+            if (!response.ok) {
+                throw new Error(data.message || "Server Error");
             }
 
-        }, 2000); // 2-second delay
+            // 4. Show the result using the data from the backend
+            // The backend returns: { status: 'safe'|'dangerous', title: '...', message: '...' }
+            showResult(data.status, data.title, data.message);
+
+        } catch (error) {
+            console.error('Error:', error);
+            
+            // Handle connection errors (e.g., if the Python server isn't running)
+            let errorMessage = "Is your Python backend running? We couldn't reach http://localhost:5000.";
+            
+            // If it's a specific error from the server, use that instead
+            if (error.message && error.message !== "Failed to fetch") {
+                errorMessage = error.message;
+            }
+
+            showResult("error", "Connection Failed", errorMessage);
+        }
     }
 
     // --- 4. Function to Display the Result ---
@@ -87,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Set the HTML for the card
         resultCard.innerHTML = `
             <i class="${iconClass}"></i>
-            <div classclass="result-text">
+            <div class="result-text">
                 <h3>${title}</h3>
                 <p>${message}</p>
             </div>
