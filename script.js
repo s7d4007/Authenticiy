@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // This gives the user feedback that something is happening while waiting for the server
         showResult("loading", "Checking...", `Analyzing the safety of ${urlToCheck}`);
 
-        // 3. --- REAL API CALL TO PYTHON BACKEND ---
+        // 3. --- API CALL TO PYTHON BACKEND ---
         try {
-            // We send the URL to your local Python server on port 5000
+            // Send the URL to local Python server on port 5000
             const response = await fetch('http://localhost:5000/api/check-url', {
                 method: 'POST',
                 headers: {
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Error:', error);
             
             // Handle connection errors (e.g., if the Python server isn't running)
-            let errorMessage = "Is your Python backend running? We couldn't reach http://localhost:5000.";
+            let errorMessage = "Sorry, Couldn't reach the server for verification. Please try again after some time.";
             
             // If it's a specific error from the server, use that instead
             if (error.message && error.message !== "Failed to fetch") {
